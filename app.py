@@ -10,11 +10,18 @@ def define(word):
         match_ratio = difflib.SequenceMatcher(None, word, closest_match[0]).ratio()
         match_ratio = round(match_ratio, 2) * 100
         if match_ratio < 100:
-            print(f'\nMatch ratio for {word} and {closest_match[0]} is: {match_ratio} percent')
-            print(f"\n{closest_match[0]}")
-        prettify(data[closest_match[0]])
+            user_input = input("\nDo you mean %s instead? Press Y or N: " % closest_match[0].upper())
+            if user_input == 'Y':
+                print(f'\nMatch ratio for {word} and {closest_match[0]} is: {match_ratio} percent')
+                print(f"\n{closest_match[0]}\n")
+                return prettify(data[closest_match[0]])
+            elif user_input == 'N':
+                return "\nSorry word was not found in this dictionary.\n"
+            else:
+                return "\nSorry this input is not understood.\n"
+        return prettify(data[closest_match[0]])
     else:
-        print(f"\nSorry, {word} is not found in this dictionary.\n")
+        return "\nSorry, {word} is not found in this dictionary.\n"
 
 
 def prettify(list):
@@ -22,9 +29,9 @@ def prettify(list):
     for line in list:
         print(f'\n{numbering}. {line}')
         numbering += 1
-    print("\nDone! Thank you for learning English :-)\n")
+    return "\nDone! Thank you for learning English :-)\n"
 
 
 if __name__ == "__main__":
     word = input("\n\nEnter a word for definition: ")
-    define(word.lower())
+    print(define(word.lower()))
