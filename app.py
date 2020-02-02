@@ -1,14 +1,17 @@
 import json
-
+import difflib
 
 data = json.load(open("data.json"))
 
 
 def define(word):
-    if word in data:
-        prettify(data[word])
+    closest_match = difflib.get_close_matches(word, data.keys(), 1)
+    if closest_match:
+        print(f"\n{closest_match[0]}")
+        prettify(data[closest_match[0]])
     else:
-        print("\nSorry. Word is not found in this dictionary.\n")
+        print(f"\nSorry, {word} is not found in this dictionary.\n")
+        
 
 """
     try:
