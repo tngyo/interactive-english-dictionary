@@ -9,4 +9,5 @@ Four outcomes can be expected:
 4. Word or close match not found, program also terminates.
 
 
+
 ![Python Local Dictionary](https://github.com/palden/interactive-english-dictionary/blob/master/Python%20local%20dictionary.jpg)
