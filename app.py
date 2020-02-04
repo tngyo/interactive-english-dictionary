@@ -5,10 +5,10 @@ data = json.load(open("data.json"))
 
 
 def define(word):
-    if word.capitalize() in data:
-       return prettify(data[word.capitalize()], word.capitalize())
-    if word.upper() in data:
-       return prettify(data[word.upper()], word.upper())
+    if (n := word.capitalize()) in data:
+       return prettify(data[n], n)
+    if (n := word.upper()) in data:
+       return prettify(data[n], n)
     closest_match = difflib.get_close_matches(word, data.keys(), 1)
     if closest_match:
         closest = closest_match[0]
